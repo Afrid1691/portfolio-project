@@ -6,7 +6,14 @@ import {
   FaCss3Alt,
   FaAws
 } from "react-icons/fa";
-import { SiSpringboot, SiPostgresql, SiJavascript, SiMysql, SiGithubactions } from "react-icons/si";
+import {
+  SiSpringboot,
+  SiPostgresql,
+  SiJavascript,
+  SiMysql,
+  SiGithubactions
+} from "react-icons/si";
+import { motion } from "framer-motion";
 
 function Skills() {
   const skills = [
@@ -30,10 +37,17 @@ function Skills() {
 
       <div className="skills-grid">
         {skills.map((skill, index) => (
-          <div className="skill-card" key={index}>
+          <motion.div
+            className="skill-card"
+            key={index}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.35, delay: index * 0.05 }}
+            viewport={{ once: true }}
+          >
             <div className="skill-icon">{skill.icon}</div>
             <span>{skill.name}</span>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

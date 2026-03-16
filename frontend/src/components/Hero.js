@@ -1,11 +1,15 @@
 import { FaGithub, FaLinkedin, FaDownload } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 function Hero() {
   return (
     <section id="hero" className="hero">
-
-      <div className="hero-content">
-
+      <motion.div
+        className="hero-content"
+        initial={{ opacity: 0, y: 35 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
         <img
           src="/profile.jpg"
           alt="Afrid Mohammed"
@@ -20,13 +24,13 @@ function Hero() {
           Hi, I'm <span>Afrid Mohammed</span>
         </h1>
 
-        <h2 className="hero-subtitle">
+        <h2 className="hero-subtitle typing-text">
           Building scalable backend systems and modern web apps.
         </h2>
 
         <p className="hero-description">
-          Software developer focused on backend engineering, APIs,
-          database systems, and clean modern user interfaces.
+          Software developer focused on backend engineering, APIs, database
+          systems, and clean modern user interfaces.
         </p>
 
         <div className="hero-buttons">
@@ -57,7 +61,21 @@ function Hero() {
           </a>
         </div>
 
-      </div>
+        <div className="hero-stats">
+          <div className="stat-card">
+            <h3>4+</h3>
+            <p>Years Experience</p>
+          </div>
+          <div className="stat-card">
+            <h3>10+</h3>
+            <p>Projects Built</p>
+          </div>
+          <div className="stat-card">
+            <h3>Full Stack</h3>
+            <p>Frontend + Backend</p>
+          </div>
+        </div>
+      </motion.div>
     </section>
   );
 }
