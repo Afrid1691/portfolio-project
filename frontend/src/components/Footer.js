@@ -3,12 +3,10 @@ function Footer() {
     <footer className="footer">
       <p>© 2026 Afrid Mohammed • Software Developer Portfolio</p>
 
-      <p>
-        📞 <a href="tel:9808338432">980-833-8432</a>
-      </p>
+      
 
       <p>
-        📧 <a href="mailto:afridm008@gmail.com">afridm008@gmail.com</a>
+        📧 <a href="mailto:afridmohammed1691@@gmail.com">afridmohammed1691@gmail.com</a>
       </p>
 
       <p>

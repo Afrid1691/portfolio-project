@@ -1,7 +1,11 @@
-import { FaGithub, FaLinkedin, FaDownload } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import ResumeModal from "./ResumeModal";
 
 function Hero() {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <section id="hero" className="hero">
       <motion.div
@@ -21,7 +25,7 @@ function Hero() {
         </p>
 
         <h1>
-          Hi, I'm <span>Afrid Mohammed</span>
+          Hi, I&apos;m <span>Afrid Mohammed</span>
         </h1>
 
         <h2 className="hero-subtitle typing-text">
@@ -38,9 +42,9 @@ function Hero() {
             View Projects
           </a>
 
-          <a href="/resume.pdf" className="btn btn-outline" download>
-            <FaDownload /> Resume
-          </a>
+          <button className="btn" onClick={() => setShowModal(true)}>
+            Request Resume
+          </button>
         </div>
 
         <div className="social-links">
@@ -63,7 +67,7 @@ function Hero() {
 
         <div className="hero-stats">
           <div className="stat-card">
-            <h3>4+</h3>
+            <h3>3+</h3>
             <p>Years Experience</p>
           </div>
           <div className="stat-card">
@@ -72,10 +76,12 @@ function Hero() {
           </div>
           <div className="stat-card">
             <h3>Full Stack</h3>
-            <p>Frontend + Backend</p>
+            <p>Frontend + Backend + Full Stack</p>
           </div>
         </div>
       </motion.div>
+
+      {showModal && <ResumeModal onClose={() => setShowModal(false)} />}
     </section>
   );
 }

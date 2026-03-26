@@ -12,23 +12,13 @@ public class ContactMessage {
     private Long id;
 
     private String name;
-    private String email;
+
+    private String phone;
 
     @Column(columnDefinition = "TEXT")
     private String message;
 
-    @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
-
-    public ContactMessage() {
-    }
-
-    public ContactMessage(String name, String email, String message) {
-        this.name = name;
-        this.email = email;
-        this.message = message;
-        this.createdAt = LocalDateTime.now();
-    }
 
     public Long getId() {
         return id;
@@ -42,12 +32,12 @@ public class ContactMessage {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getMessage() {
@@ -60,5 +50,9 @@ public class ContactMessage {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

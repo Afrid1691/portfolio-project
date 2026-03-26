@@ -5,14 +5,12 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
-import Contact from "./components/Contact";
+import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
 import BackToTop from "./components/BackToTop";
-
 function App() {
   return (
     <div className="app">
-
       <TechBackground />
 
       <div className="cursor-glow"></div>
@@ -22,10 +20,9 @@ function App() {
       <About />
       <Skills />
       <Projects />
-      <Contact />
+      <ContactForm />
       <Footer />
       <BackToTop />
-
     </div>
   );
 }
