@@ -10,6 +10,8 @@ function ContactForm() {
 
   const [status, setStatus] = useState("");
 
+  const API = process.env.REACT_APP_API_BASE_URL || "http://localhost:8080";
+
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -21,14 +23,9 @@ function ContactForm() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:8080/contact", formData);
-
+      await axios.post(`${API}/contact`, formData);
       setStatus("Message sent 🚀");
-      setFormData({
-        name: "",
-        phone: "",
-        message: "",
-      });
+      setFormData({ name: "", phone: "", message: "" });
     } catch (error) {
       console.error(error);
       setStatus("Failed to send ❌");
@@ -36,53 +33,13 @@ function ContactForm() {
   };
 
   return (
-    <section className="contact-section" id="contact">
-      <h2 className="section-title">Contact Me</h2>
-
-      <div className="contact-card">
-        <form className="contact-form" onSubmit={handleSubmit}>
-          <div className="contact-field">
-            <label>Name</label>
-            <input
-              type="text"
-              name="name"
-              placeholder="Enter your name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="contact-field">
-            <label>Phone</label>
-            <input
-              type="text"
-              name="phone"
-              placeholder="Enter phone number"
-              value={formData.phone}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="contact-field">
-            <label>Message</label>
-            <textarea
-              name="message"
-              placeholder="Write your message..."
-              value={formData.message}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <button type="submit" className="contact-btn">
-            Send Message
-          </button>
-
-          {status && <p className="contact-status">{status}</p>}
-        </form>
-      </div>
-    </section>
+    <form onSubmit={handleSubmit}>
+      <input name="name" value={formData.name} onChange={handleChange} placeholder="Name" required />
+      <input name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone" />
+      <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Message" required />
+      <button type="submit">Send</button>
+      {status && <p>{status}</p>}
+    </form>
   );
 }
 

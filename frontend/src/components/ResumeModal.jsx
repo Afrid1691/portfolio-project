@@ -9,6 +9,8 @@ function ResumeModal({ onClose }) {
 
   const [status, setStatus] = useState("");
 
+  const API = process.env.REACT_APP_API_BASE_URL || "http://localhost:8080";
+
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -20,59 +22,24 @@ function ResumeModal({ onClose }) {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:8080/resume-request", formData);
-      setStatus("Request sent. I’ll review and share my resume.");
+      await axios.post(`${API}/resume-request`, formData);
+      setStatus("Request sent ✅");
       setFormData({ name: "", email: "" });
     } catch (error) {
       console.error(error);
-      setStatus("Failed to send request.");
+      setStatus("Failed to send ❌");
     }
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="resume-modal-card">
-        <h2 className="resume-title">Request Resume</h2>
-        <p className="resume-subtitle">
-          Enter your details and I’ll share my resume after review.
-        </p>
-
-        <form className="resume-form" onSubmit={handleSubmit}>
-          <div className="resume-field">
-            <label>Name</label>
-            <input
-              type="text"
-              name="name"
-              placeholder="Your name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="resume-field">
-            <label>Email</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="you@example.com"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <button type="submit" className="resume-btn">
-            Send Request
-          </button>
-
-          {status && <p className="resume-status">{status}</p>}
-        </form>
-
-        <button className="resume-close" onClick={onClose}>
-          ✕
-        </button>
-      </div>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input name="name" value={formData.name} onChange={handleChange} placeholder="Name" required />
+        <input name="email" value={formData.email} onChange={handleChange} placeholder="Email" required />
+        <button type="submit">Send</button>
+        {status && <p>{status}</p>}
+      </form>
+      <button onClick={onClose}>Close</button>
     </div>
   );
 }
