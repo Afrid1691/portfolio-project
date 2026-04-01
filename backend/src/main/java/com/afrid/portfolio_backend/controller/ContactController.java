@@ -1,29 +1,23 @@
 package com.afrid.portfolio_backend.controller;
 
 import com.afrid.portfolio_backend.entity.ContactMessage;
-import com.afrid.portfolio_backend.service.ContactMessageService;
+import com.afrid.portfolio_backend.repository.ContactMessageRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/api/contact")
+@RequestMapping("/contact")
 @CrossOrigin(origins = "http://localhost:3000")
 public class ContactController {
 
-    private final ContactMessageService contactMessageService;
-
-    public ContactController(ContactMessageService contactMessageService) {
-        this.contactMessageService = contactMessageService;
-    }
+    @Autowired
+    private ContactMessageRepository contactMessageRepository;
 
     @PostMapping
-    public ContactMessage saveMessage(@RequestBody ContactMessage contactMessage) {
-        return contactMessageService.saveMessage(contactMessage);
-    }
-
-    @GetMapping
-    public List<ContactMessage> getAllMessages() {
-        return contactMessageService.getAllMessages();
+    public ResponseEntity<String> saveContact(@RequestBody ContactMessage contactMessage) {
+        contactMessageRepository.save(contactMessage);
+        return ResponseEntity.ok("Message sent successfully");
     }
 }

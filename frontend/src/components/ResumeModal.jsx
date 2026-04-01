@@ -20,10 +20,11 @@ function ResumeModal({ onClose }) {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:8080/api/resume-request", formData);
+      await axios.post("http://localhost:8080/resume-request", formData);
       setStatus("Request sent. I’ll review and share my resume.");
       setFormData({ name: "", email: "" });
     } catch (error) {
+      console.error(error);
       setStatus("Failed to send request.");
     }
   };

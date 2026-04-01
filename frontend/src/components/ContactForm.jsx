@@ -21,7 +21,7 @@ function ContactForm() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:8080/api/contact", formData);
+      await axios.post("http://localhost:8080/contact", formData);
 
       setStatus("Message sent 🚀");
       setFormData({
@@ -30,6 +30,7 @@ function ContactForm() {
         message: "",
       });
     } catch (error) {
+      console.error(error);
       setStatus("Failed to send ❌");
     }
   };
@@ -40,7 +41,6 @@ function ContactForm() {
 
       <div className="contact-card">
         <form className="contact-form" onSubmit={handleSubmit}>
-          
           <div className="contact-field">
             <label>Name</label>
             <input
